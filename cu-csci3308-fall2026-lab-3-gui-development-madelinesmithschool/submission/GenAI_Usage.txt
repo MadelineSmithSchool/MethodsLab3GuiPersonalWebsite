@@ -1,0 +1,237 @@
+I am using gemini for this task.
+
+The prompt I gave:
+"can you write me the html, css and js for a really simple personal website. you can use bootsrap for styling. 
+I need the following tabs/sections
+Home: An image and a short introduction
+Hobbies: At least three hobbies, each with an image and short description
+Projects: At least three projects, each with an image, description, and link to an additional resource when appropriate
+Resume: A resume created with HTML elements rather than an embedded PDF
+
+I can add all the pictures, so just leave those for me. But add the rest. my hobbies are paddleboarding, henna tattoos, a
+nd reading. I have worked on my "coffee chat" project where I have connected students with real people. I have worked on a 
+"medical outreach" project where myself and my peers have brought medical devices and first aid kits to a middle school in the 
+district. I've also attatched my resume here so you can make it imbedded with sections in there using html instead of just a 
+picture. The sections here and making sure they are all part of the code is more important than making it complex."
+
+
+Next:
+"Ok great, lets go ahead and work on the css now, here are the colors I want, #ffdbb, #ccbeb1, #997E67, #664930 
+keep the organization I like that, but make it a bit prettier"
+
+
+The original code generated before I edited:
+"<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madeline Smith - Personal Website</title>
+
+    <!-- Bootstrap CSS -->
+    <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+      rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Madeline Smith</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#navbarNav" aria-controls="navbarNav" 
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#hobbies">Hobbies</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME SECTION -->
+<section id="home" class="container py-5">
+  <h2 class="mb-4">Home</h2>
+  <div class="row align-items-center">
+    <div class="col-md-4">
+      <img src="your-image-here.jpg" class="img-fluid rounded" alt="Your Photo">
+    </div>
+    <div class="col-md-8">
+      <p>
+        Hi! I'm Madeline Smith, a computer science student at the University of Colorado Boulder.
+        I love building meaningful projects, mentoring students, and exploring creative hobbies.
+        This website highlights my work, interests, and experience.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- HOBBIES SECTION -->
+<section id="hobbies" class="container py-5">
+  <h2 class="mb-4">Hobbies</h2>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card hobby-card">
+        <img src="paddleboarding.jpg" class="card-img-top" alt="Paddleboarding">
+        <div class="card-body">
+          <h5 class="card-title">Paddleboarding</h5>
+          <p class="card-text">
+            I love spending time on the water, especially paddleboarding. It’s peaceful,
+            active, and one of my favorite ways to unwind.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card hobby-card">
+        <img src="henna.jpg" class="card-img-top" alt="Henna Tattoos">
+        <div class="card-body">
+          <h5 class="card-title">Henna Tattoos</h5>
+          <p class="card-text">
+            I enjoy creating henna designs—it's a relaxing, artistic hobby that lets me
+            experiment with patterns and creativity.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card hobby-card">
+        <img src="reading.jpg" class="card-img-top" alt="Reading">
+        <div class="card-body">
+          <h5 class="card-title">Reading</h5>
+          <p class="card-text">
+            Reading is one of my favorite ways to learn and explore new ideas. I especially
+            enjoy fiction and personal development books.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects" class="container py-5">
+  <h2 class="mb-4">Projects</h2>
+
+  <div class="row">
+    <!-- Coffee Chat Project -->
+    <div class="col-md-4">
+      <div class="card project-card">
+        <img src="coffeechat.jpg" class="card-img-top" alt="Coffee Chat Project">
+        <div class="card-body">
+          <h5 class="card-title">Coffee Chat Project</h5>
+          <p class="card-text">
+            A platform connecting students with real professionals for meaningful conversations,
+            mentorship, and career exploration.
+          </p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Medical Outreach Project -->
+    <div class="col-md-4">
+      <div class="card project-card">
+        <img src="medicaloutreach.jpg" class="card-img-top" alt="Medical Outreach">
+        <div class="card-body">
+          <h5 class="card-title">Medical Outreach</h5>
+          <p class="card-text">
+            Worked with peers to deliver medical devices and first aid kits to a local middle school,
+            improving access to essential health resources.
+          </p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DNA Strategy Game -->
+    <div class="col-md-4">
+      <div class="card project-card">
+        <img src="dna-game.jpg" class="card-img-top" alt="DNA Game">
+        <div class="card-body">
+          <h5 class="card-title">DNA Strategy Game</h5>
+          <p class="card-text">
+            A C++ strategy game simulating DNA sequencing workflows with dynamic events and
+            object‑oriented architecture.
+          </p>
+          <a href="#" class="btn btn-primary">View Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME SECTION -->
+<section id="resume" class="container py-5">
+  <h2 class="mb-4">Resume</h2>
+
+  <h3>Contact</h3>
+  <p>
+    <strong>Phone:</strong> (719) 360‑6589<br>
+    <strong>Email:</strong> mightbecoding@gmail.com<br>
+    <strong>LinkedIn:</strong> 
+    <a href="https://www.linkedin.com/in/madeline-smith-98a139277/" target="_blank">
+      madeline-smith-98a139277
+    </a>
+  </p>
+
+  <h3>Experience</h3>
+  <ul>
+    <li><strong>Bluestaq – Repeating Summer Intern (2022–2025)</strong><br>
+      Developed a generative invoicing system integrated with the company website, implementing a
+      data testing pipeline to validate data flow, correctness, and edge cases. 
+    </li>
+    <li><strong>AI Camp / All In AI – Summer Counselor (2022–2025)</strong><br>
+      Built and trained a supervised machine learning model in Python to predict housing market prices. 
+    </li>
+    <li><strong>DNA Text-Based Strategy Game – Game Designer (Dec 2025)</strong><br>
+      Designed and implemented a two-player C++ strategy game simulating DNA sequencing workflows. 
+    </li>
+    <li><strong>Caffeinated Cow – Barista (2025)</strong><br>
+      Demonstrated strong interpersonal and customer-facing communication in a fast-paced environment. 
+    </li>
+  </ul>
+
+  <h3>Skills</h3>
+  <p>
+    <strong>Languages:</strong> HTML, CSS, JS, TS, Java, Python, SQL, C++<br>
+    <strong>Systems:</strong> GitHub, Microsoft Suites, Google Workspace, AWS, VS Code, IntelliJ IDEA<br>
+    <strong>Other:</strong> Communication, Problem Solving, Teamwork, Algorithms, Debugging, Testing, File I/O
+  </p>
+
+  <h3>Education</h3>
+  <p>
+    <strong>University of Colorado Boulder</strong><br>
+    B.S. in Computer Science & Leadership Studies (Expected 2029)
+  </p>
+  <p>
+    <strong>Cheyenne Mountain High School</strong><br>
+    GPA: 4.4 | Summa Cum Laude | National Honor Society
+  </p>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>"
+
+4. AI produced the code successfully, but I ended up changing some of the design to match my original sketch, as well as one of the colors since it turned out to not match the others.
+I use a live server extension for all my personal projects, so I just opened a live server to test the website
+"<button class="navbar-toggler" type="button" data-bs-toggle="collapse" "
+This code creates a button in the nav bar at the top of all the ages, the class name can be chosen to be anything, but 
+its helpful for organization and css to make the name make sense. the type is button which explains itself, and the "data-bs-toggle="collapse"
+means that when you click on the button, it actually works, so it hides the first page and opens the next (ie, collapses the first page)

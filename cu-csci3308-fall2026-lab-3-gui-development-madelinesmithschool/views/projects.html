@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madeline Smith | Projects</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../resources/css/styles.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="home.html">Madeline Smith</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="hobbies.html">Hobbies</a></li>
+        <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section id="projects" class="container py-5">
+  <h2 class="mb-4">Projects</h2>
+
+  <div class="d-flex gap-2 mb-3">
+    <button class="btn btn-sm btn-outline-secondary" type="button" id="expandAllProjects">Open All</button>
+    <button class="btn btn-sm btn-outline-secondary" type="button" id="collapseAllProjects">Collapse All</button>
+  </div>
+
+  <div class="accordion" id="projectAccordion">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingCoffeeChat">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCoffeeChat" aria-expanded="false" aria-controls="collapseCoffeeChat">
+          Coffee Chat Project
+        </button>
+      </h2>
+      <div id="collapseCoffeeChat" class="accordion-collapse collapse" aria-labelledby="headingCoffeeChat" data-bs-parent="#projectAccordion">
+        <div class="accordion-body">
+          <div class="row align-items-center">
+            <div class="col-md-4">
+              <img src="../resources/img/coffeeChatImage.png" class="img-fluid rounded" alt="Coffee Chat project illustration and student networking graphic">
+            </div>
+            <div class="col-md-8">
+              <p>
+                A platform connecting students with real professionals for meaningful conversations,
+                mentorship, and career exploration.
+              </p>
+              <p>
+                The goal of the project was to make networking more approachable and help students
+                explore careers by speaking with professionals in a low-pressure setting.
+              </p>
+              <a href="https://coffeechatcareer.com" target="_blank" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingMedicalOutreach">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMedicalOutreach" aria-expanded="false" aria-controls="collapseMedicalOutreach">
+          Medical Outreach
+        </button>
+      </h2>
+      <div id="collapseMedicalOutreach" class="accordion-collapse collapse" aria-labelledby="headingMedicalOutreach" data-bs-parent="#projectAccordion">
+        <div class="accordion-body">
+          <div class="row align-items-center">
+            <div class="col-md-4">
+              <img src="../resources/img/medicalOutreachImage.png" class="img-fluid rounded" alt="Medical outreach project helping students with supplies and health resources">
+            </div>
+            <div class="col-md-8">
+              <p>
+                Worked with peers to deliver medical devices and first aid kits to a local middle school,
+                improving access to essential health resources.
+              </p>
+              <p>
+                It was a meaningful service initiative focused on community outreach, public health awareness,
+                and making support resources more accessible for students.
+              </p>
+              <a href="https://medicaloutreach.fair-corp.com" target="_blank" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingDNA">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDNA" aria-expanded="false" aria-controls="collapseDNA">
+          DNA Strategy Game
+        </button>
+      </h2>
+      <div id="collapseDNA" class="accordion-collapse collapse" aria-labelledby="headingDNA" data-bs-parent="#projectAccordion">
+        <div class="accordion-body">
+          <div class="row align-items-center">
+            <div class="col-md-4">
+              <img src="../resources/img/DNAgameImage.png" class="img-fluid rounded" alt="DNA strategy game cover art with scientific theme">
+            </div>
+            <div class="col-md-8">
+              <p>
+                A C++ strategy game simulating DNA sequencing workflows with dynamic events and
+                object-oriented architecture.
+              </p>
+              <p>
+                The project challenged me to design a game with strategic decision-making, workflow simulation,
+                and adaptable mechanics that reflected real scientific processes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById('expandAllProjects').addEventListener('click', function () {
+    const accordionItems = document.querySelectorAll('.accordion-collapse');
+    accordionItems.forEach(function (item) {
+      const bsCollapse = new bootstrap.Collapse(item, { toggle: false });
+      bsCollapse.show();
+    });
+  });
+
+  document.getElementById('collapseAllProjects').addEventListener('click', function () {
+    const accordionItems = document.querySelectorAll('.accordion-collapse');
+    accordionItems.forEach(function (item) {
+      const bsCollapse = new bootstrap.Collapse(item, { toggle: false });
+      bsCollapse.hide();
+    });
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
