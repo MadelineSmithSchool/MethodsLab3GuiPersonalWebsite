@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madeline Smith | Calendar</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../resources/css/styles.css">
+
+  <style>
+    :root {
+      --bg: #FFDBBB;
+      --panel: #CCBEB1;
+      --border: rgba(122, 91, 69, 0.25);
+      --ink: #7A5B45;
+      --ink-soft: #8C6B5A;
+      --accent: #997E67;
+      --accent-hover: #7A5B45;
+      --academic-bg: #E9E0FF;
+      --academic-text: #5B3FA0;
+      --academic-border: #B9A9E8;
+      --work-bg: #FDEACF;
+      --work-text: #A16912;
+      --work-border: #E0BE76;
+      --social-bg: #FCE7F3;
+      --social-text: #BE185D;
+      --social-border: #F5B4D6;
+      --health-bg: #E3F8EA;
+      --health-text: #157347;
+      --health-border: #B6E5C6;
+      --personal-bg: #F0EAFD;
+      --personal-text: #6D28D9;
+      --personal-border: #CBB8F6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .page-wrap {
+      max-width: 1400px;
+      padding: 2rem 1.5rem 3rem;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      font-size: clamp(1.8rem, 2vw + 1rem, 2.8rem);
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .page-subtitle {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
+    .btn-add {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      font-weight: 500;
+      padding: 0.5rem 1.1rem;
+    }
+
+    .btn-add:hover,
+    .btn-add:focus {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: #fff;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .calendar-grid {
+      align-items: stretch;
+    }
+
+    .day-column {
+      background-color: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      box-shadow: 0 4px 10px rgba(122, 91, 69, 0.15);
+    }
+
+    .day-header {
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.75rem 0.85rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink);
+    }
+
+    .day-events {
+      padding: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+    }
+
+    .event-card {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--ink-soft);
+      border-radius: 8px;
+      padding: 0.5rem 0.6rem;
+      background-color: #F7E7D8;
+      font-size: 0.8rem;
+      line-height: 1.35;
+      word-break: break-word;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(122, 91, 69, 0.12);
+    }
+
+    .event-card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .event-time {
+      font-weight: 600;
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .event-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin: 0.1rem 0 0.2rem;
+    }
+
+    .event-modality,
+    .event-location,
+    .event-attendees {
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+    }
+
+    .event-location a {
+      color: var(--ink);
+      text-decoration: underline;
+    }
+
+    .category-academic,
+    .legend-dot.category-academic {
+      background-color: var(--academic-bg);
+      border-color: var(--academic-border);
+    }
+    .event-card.category-academic { border-left-color: var(--academic-text); }
+    .legend-dot.category-academic { background-color: var(--academic-text); }
+
+    .category-work,
+    .legend-dot.category-work {
+      background-color: var(--work-bg);
+      border-color: var(--work-border);
+    }
+    .event-card.category-work { border-left-color: var(--work-text); }
+    .legend-dot.category-work { background-color: var(--work-text); }
+
+    .category-social,
+    .legend-dot.category-social {
+      background-color: var(--social-bg);
+      border-color: var(--social-border);
+    }
+    .event-card.category-social { border-left-color: var(--social-text); }
+    .legend-dot.category-social { background-color: var(--social-text); }
+
+    .category-health,
+    .legend-dot.category-health {
+      background-color: var(--health-bg);
+      border-color: var(--health-border);
+    }
+    .event-card.category-health { border-left-color: var(--health-text); }
+    .legend-dot.category-health { background-color: var(--health-text); }
+
+    .category-personal,
+    .legend-dot.category-personal {
+      background-color: var(--personal-bg);
+      border-color: var(--personal-border);
+    }
+    .event-card.category-personal { border-left-color: var(--personal-text); }
+    .legend-dot.category-personal { background-color: var(--personal-text); }
+
+    @media (max-width: 991px) {
+      .calendar-grid { flex-wrap: wrap; }
+      .day-column {
+        flex: 0 0 50%;
+        max-width: 50%;
+        min-height: 260px;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .day-column {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="home.html">Madeline Smith</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="hobbies.html">Hobbies</a></li>
+          <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+          <li class="nav-item"><a class="nav-link" href="calendar.html">Calendar</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid page-wrap">
+
+    <header class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+      <div>
+        <h1 class="page-title mb-0">Weekly Calendar</h1>
+        <p class="page-subtitle mb-0">Plan the week, one event at a time.</p>
+      </div>
+      <button
+        class="btn btn-primary mt-3"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#event_modal"
+      >
+        Create Event
+      </button>
+    </header>
+
+    <!-- Category legend -->
+    <div class="legend mb-4" id="legend">
+      <span class="legend-item"><span class="legend-dot category-academic"></span>Academic</span>
+      <span class="legend-item"><span class="legend-dot category-work"></span>Work</span>
+      <span class="legend-item"><span class="legend-dot category-social"></span>Social</span>
+      <span class="legend-item"><span class="legend-dot category-health"></span>Health</span>
+      <span class="legend-item"><span class="legend-dot category-personal"></span>Personal</span>
+    </div>
+
+    <!-- Calendar grid -->
+    <div class="row g-2 calendar-grid" id="calendar_grid">
+
+      <div class="col day-column" data-day="Sunday">
+        <div class="day-header">Sunday</div>
+        <div class="day-events" id="events_Sunday"></div>
+      </div>
+
+      <div class="col day-column" data-day="Monday">
+        <div class="day-header">Monday</div>
+        <div class="day-events" id="events_Monday"></div>
+      </div>
+
+      <div class="col day-column" data-day="Tuesday">
+        <div class="day-header">Tuesday</div>
+        <div class="day-events" id="events_Tuesday"></div>
+      </div>
+
+      <div class="col day-column" data-day="Wednesday">
+        <div class="day-header">Wednesday</div>
+        <div class="day-events" id="events_Wednesday"></div>
+      </div>
+
+      <div class="col day-column" data-day="Thursday">
+        <div class="day-header">Thursday</div>
+        <div class="day-events" id="events_Thursday"></div>
+      </div>
+
+      <div class="col day-column" data-day="Friday">
+        <div class="day-header">Friday</div>
+        <div class="day-events" id="events_Friday"></div>
+      </div>
+
+      <div class="col day-column" data-day="Saturday">
+        <div class="day-header">Saturday</div>
+        <div class="day-events" id="events_Saturday"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Event modal -->
+  <div class="modal fade" id="event_modal" tabindex="-1" aria-labelledby="event_modal_label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="event_modal_label">New event</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <form id="event_form" novalidate>
+
+            <div class="mb-3">
+              <label for="event_name" class="form-label">Event name</label>
+              <input type="text" class="form-control" id="event_name" required>
+              <div class="invalid-feedback">Enter a name for this event.</div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="event_weekday" class="form-label">Weekday</label>
+                <select class="form-select" id="event_weekday" required>
+                  <option value="" disabled selected>Choose a day&hellip;</option>
+                  <option>Sunday</option>
+                  <option>Monday</option>
+                  <option>Tuesday</option>
+                  <option>Wednesday</option>
+                  <option>Thursday</option>
+                  <option>Friday</option>
+                  <option>Saturday</option>
+                </select>
+                <div class="invalid-feedback">Choose a weekday.</div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="event_time" class="form-label">Time</label>
+                <input type="time" class="form-control" id="event_time" required>
+                <div class="invalid-feedback">Choose a time.</div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="event_category" class="form-label">Category</label>
+              <select class="form-select" id="event_category" required>
+                <option value="" disabled selected>Choose a category&hellip;</option>
+                <option value="academic">Academic</option>
+                <option value="work">Work</option>
+                <option value="social">Social</option>
+                <option value="health">Health</option>
+                <option value="personal">Personal</option>
+              </select>
+              <div class="invalid-feedback">Choose a category.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="event_modality" class="form-label">Modality</label>
+              <select
+                class="form-control"
+                id="event_modality"
+                required
+                onchange="updateLocationOptions(this.value)"
+              >
+                <option value="in-person">In Person</option>
+                <option value="remote">Remote</option>
+              </select>
+              <div class="invalid-feedback">Choose a modality.</div>
+            </div>
+
+            <div class="mb-3" id="location_group">
+              <label for="event_location" class="form-label">Location</label>
+              <input type="text" class="form-control" id="event_location" placeholder="e.g. Norlin Library, Room 204">
+              <div class="invalid-feedback">Enter a location.</div>
+            </div>
+
+            <div class="mb-3 d-none" id="remote_url_group">
+              <label for="event_remote_url" class="form-label">Remote URL</label>
+              <input
+                type="url"
+                class="form-control"
+                id="event_remote_url"
+                placeholder="https://zoom.us/j/123456789"
+                pattern="https?:\/\/[\w.-]+\.[a-zA-Z]{2,}(\/\S*)?">
+              <div class="invalid-feedback">Enter a valid link starting with http:// or https://.</div>
+            </div>
+
+            <div class="mb-1">
+              <label for="event_attendees" class="form-label">Attendees</label>
+              <input type="text" class="form-control" id="event_attendees" placeholder="e.g. Malia, John" required>
+              <div class="form-text">Separate names with commas.</div>
+              <div class="invalid-feedback">List at least one attendee.</div>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-add" id="save_event_btn" onclick="saveEvent()">Save event</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom behavior -->
+  <script src="../resources/js/script.js"></script>
+</body>
+</html>
